@@ -10,12 +10,25 @@ public class PlayerMovement : MonoBehaviour
     public Transform projectilePt;
     public GameObject projectile;
 
-    public int maxBullets;
+    #region shootingDecl
+    public int maxBullets=10;
+    int currentBullets;
+    float reloadTime = 0.5f;
+    float nextTimeToFire;
+    public float fireRate = 10f;
+    #endregion
+
+
+    public int maxlives = 25;
+    public int lives = 25;
+    GameManager gameManager;
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        
+        currentBullets = maxBullets;
+        lives = maxlives;
+        gameManager = FindObjectOfType<GameManager>();
     }
 
     // Update is called once per frame
@@ -39,19 +52,27 @@ public class PlayerMovement : MonoBehaviour
         #endregion
 
         #region shooting
-        if (Input.GetButtonDown("Shoot"))
+     
+        if (Input.GetButton("Shoot") &&Time.time>=nextTimeToFire)
         {
-            Instantiate(projectile, projectilePt.transform.position, projectilePt.rotation);
+            nextTimeToFire = Time.time + 1.2f / fireRate;
+            if (currentBullets > 0)
+            {
+                MultiShoot();
+            }
+
         }
-        if (Input.GetButton("Shoot") )
+       if (Input.GetButtonUp("Shoot"))
         {
-
-            StartCoroutine(ShootMultipleBullets()); 
-
+           currentBullets = maxBullets;
         }
-       
-        
+
         #endregion
+
+        if (lives <= 0)
+        {
+            gameManager.GameOver();
+        }
 
     }
     void FixedUpdate()
@@ -68,19 +89,34 @@ public class PlayerMovement : MonoBehaviour
 
    void FaceTheMouse()
     {
-        Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        Vector3 direction = mousePosition - transform.position;
-        float angle = Mathf.Atan2(direction.z, direction.x)*Mathf.Rad2Deg;
-        rb.rotation = Quaternion.Euler(0, -angle, 0);
-    }
+        /* Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+         Vector3 direction = mousePosition - transform.position;
+         float angle = Mathf.Atan2(direction.z, direction.x)*Mathf.Rad2Deg;
+         rb.rotation = Quaternion.Euler(0, -angle, 0);
+         */
+        Ray cameraRay = Camera.main.ScreenPointToRay(Input.mousePosition);
+        Plane groundPlane = new Plane(Vector3.up, Vector3.zero);
+        float raylength;
 
-    IEnumerator ShootMultipleBullets()
-    {
-        for (int i = 0; i < maxBullets; i++)
+        if(groundPlane.Raycast(cameraRay,out raylength))
         {
-            yield return new WaitForSeconds(0.02f);
-            Instantiate(projectile, projectilePt.transform.position, projectilePt.rotation);
-
+            Vector3 pointToLook = cameraRay.GetPoint(raylength);
+            Debug.DrawLine(cameraRay.origin, pointToLook, Color.blue);
+            transform.LookAt(new Vector3(pointToLook.x, transform.position.y,pointToLook.z));
         }
     }
+
+    void MultiShoot()
+    {
+        Instantiate(projectile, projectilePt.transform.position, projectilePt.rotation);
+        currentBullets--;
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Projectile")
+        {
+            lives--;
+        }
+    }
+}

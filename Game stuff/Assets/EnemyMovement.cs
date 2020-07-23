@@ -8,18 +8,21 @@ public class EnemyMovement : MonoBehaviour
     Transform player;
     NavMeshAgent navMeshAgent;
     public float radius=3;
-    float range = 4;
+   public float range = 4;
     float timeBetweenShots = 1.5f;
     float shootingTimer;
    public GameObject projectile;
    public Transform projectileSpawnPt;
 
     public float lives=5;
+    GameManager gameManager;
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
         navMeshAgent = GetComponent<NavMeshAgent>();
+        gameManager = FindObjectOfType<GameManager>();
+
     }
 
     // Update is called once per frame
@@ -36,8 +39,11 @@ public class EnemyMovement : MonoBehaviour
         if (lives <= 0)
         {
             //get out a few particles
+            gameManager.noOfActiveEnemies.Remove(gameObject);
+            gameManager.enemiesKilled++;
             Destroy(gameObject);
         }
+        shootingTimer += Time.deltaTime;
     }
     void SetDestination()
     {
@@ -49,7 +55,7 @@ public class EnemyMovement : MonoBehaviour
     }
     void StartShooting()
     {
-        shootingTimer += Time.deltaTime;
+        
         if (shootingTimer >= timeBetweenShots)
         {
             Instantiate(projectile, projectileSpawnPt.transform.position,projectileSpawnPt.rotation);
