@@ -6635,7 +6635,6 @@ GameObject:
   m_Component:
   - component: {fileID: 963194228}
   - component: {fileID: 963194227}
-  - component: {fileID: 963194226}
   - component: {fileID: 963194229}
   - component: {fileID: 963194230}
   m_Layer: 0
@@ -6645,14 +6644,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &963194226
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 963194225}
-  m_Enabled: 1
 --- !u!20 &963194227
 Camera:
   m_ObjectHideFlags: 0
@@ -8763,6 +8754,7 @@ MonoBehaviour:
   anEnemy:
   - {fileID: 5072469455684106992, guid: 5e7a3b38853b3684892c66c5c0fc7dcb, type: 3}
   - {fileID: 8934409182581369876, guid: 553fef7bf9e9b0f4591658f0a2372c4b, type: 3}
+  - {fileID: 3480678069917233267, guid: 8a9f0e0788aa5eb4c981b6162e9986c3, type: 3}
   enemiesKilled: 0
   killStreakText: {fileID: 1081834846}
   noOfActiveEnemies: []
@@ -12453,6 +12445,7 @@ GameObject:
   - component: {fileID: 1667035122}
   - component: {fileID: 1667035121}
   - component: {fileID: 1667035127}
+  - component: {fileID: 1667035128}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -12584,6 +12577,14 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!81 &1667035128
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1667035120}
+  m_Enabled: 1
 --- !u!1 &1684184030 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 77fd858a5c2a21b49a81ad0732848106,
@@ -15758,14 +15759,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2142726197}
-  m_LocalRotation: {x: 0.5, y: 0.5, z: -0.5, w: 0.5}
-  m_LocalPosition: {x: 0.7, y: -0.13999999, z: 0.21}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0.06, y: 0.17, z: 0.74}
   m_LocalScale: {x: 0.40757, y: 0.27203667, z: 0.40757}
   m_Children:
   - {fileID: 1478702194}
   m_Father: {fileID: 1667035126}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 90, y: 90, z: 0}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!65 &2142726202
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -15824,6 +15825,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 5072469455684106992, guid: 5e7a3b38853b3684892c66c5c0fc7dcb,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5072469455684107004, guid: 5e7a3b38853b3684892c66c5c0fc7dcb,
         type: 3}
