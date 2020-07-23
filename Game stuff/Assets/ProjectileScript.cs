@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class ProjectileScript : MonoBehaviour
 {
-   public  float force=30f;
+    public  float force=30f;
+    public GameObject myParticleSystem;
+
     Rigidbody projRb;
     // Start is called before the first frame update
     void Start()
@@ -20,6 +22,15 @@ public class ProjectileScript : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)
     {
+        Instantiate(myParticleSystem, this.transform);
+        StartCoroutine(SmallWait());
+        this.GetComponent<MeshRenderer>().enabled = false;
+
+    }
+
+    private IEnumerator SmallWait()
+    {
+        yield return new WaitForSeconds(0.15f);
         Destroy(gameObject);
     }
 }

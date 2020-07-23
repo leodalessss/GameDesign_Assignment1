@@ -8,12 +8,15 @@ public class EnemyMovement : MonoBehaviour
     Transform player;
     NavMeshAgent navMeshAgent;
     public float radius=3;
-   public float range = 4;
+    public float range = 4;
     float timeBetweenShots = 1.5f;
     float shootingTimer;
-   public GameObject projectile;
-   public Transform projectileSpawnPt;
+    public GameObject projectile;
+    public Transform projectileSpawnPt;
 
+    public AudioSource myAudioSource;
+    public AudioClip [] myAudioClips;
+    int rand;
     public float lives=5;
     GameManager gameManager;
     // Start is called before the first frame update
@@ -22,7 +25,8 @@ public class EnemyMovement : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player").transform;
         navMeshAgent = GetComponent<NavMeshAgent>();
         gameManager = FindObjectOfType<GameManager>();
-
+        rand = Random.Range(0, myAudioClips.Length);
+        myAudioSource.clip = myAudioClips[rand];
     }
 
     // Update is called once per frame
@@ -55,11 +59,11 @@ public class EnemyMovement : MonoBehaviour
     }
     void StartShooting()
     {
-        
         if (shootingTimer >= timeBetweenShots)
         {
             Instantiate(projectile, projectileSpawnPt.transform.position,projectileSpawnPt.rotation);
-
+            myAudioSource.Play();
+            Debug.Log("        WWWWWWWWWWWWWWWW                  AAAAAAAAAAAA0");
             shootingTimer = 0;
         }
     }

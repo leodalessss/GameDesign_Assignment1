@@ -10,6 +10,7 @@ public class PlayerMovement : MonoBehaviour
     public Transform projectilePt;
     public GameObject projectile;
 
+    AudioSource myAudioSource;
     #region shootingDecl
     public int maxBullets=10;
     int currentBullets;
@@ -29,6 +30,7 @@ public class PlayerMovement : MonoBehaviour
         currentBullets = maxBullets;
         lives = maxlives;
         gameManager = FindObjectOfType<GameManager>();
+        myAudioSource = this.GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -109,6 +111,10 @@ public class PlayerMovement : MonoBehaviour
     void MultiShoot()
     {
         Instantiate(projectile, projectilePt.transform.position, projectilePt.rotation);
+        //if(!myAudioSource.isPlaying) If we want only one bullet sound at a time
+        {
+            myAudioSource.Play();
+        }
         currentBullets--;
     }
 
