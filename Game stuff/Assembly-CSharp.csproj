@@ -62,15 +62,17 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\CameraFollow.cs" />
-    <Compile Include="Assets\ClippyText.cs" />
-    <Compile Include="Assets\EnemyMovement.cs" />
-    <Compile Include="Assets\EnemySoundController.cs" />
-    <Compile Include="Assets\GameManager.cs" />
-    <Compile Include="Assets\MenuManager.cs" />
-    <Compile Include="Assets\MinimapFollow.cs" />
-    <Compile Include="Assets\PlayerMovement.cs" />
-    <Compile Include="Assets\ProjectileScript.cs" />
+    <Compile Include="Assets\Scripts\CameraFollow.cs" />
+    <Compile Include="Assets\Scripts\ClippyText.cs" />
+    <Compile Include="Assets\Scripts\EnemyMovement.cs" />
+    <Compile Include="Assets\Scripts\EnemyPanel.cs" />
+    <Compile Include="Assets\Scripts\EnemySoundController.cs" />
+    <Compile Include="Assets\Scripts\GameManager.cs" />
+    <Compile Include="Assets\Scripts\MenuManager.cs" />
+    <Compile Include="Assets\Scripts\MinimapFollow.cs" />
+    <Compile Include="Assets\Scripts\PlayerMovement.cs" />
+    <Compile Include="Assets\Scripts\ProjectileScript.cs" />
+    <Compile Include="Assets\Scripts\SoundController.cs" />
     <Reference Include="UnityEngine">
       <HintPath>D:/Program Files (x86)/Unity/Unity Editors/2019.4.4f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>
