@@ -14,13 +14,13 @@ public class GameManager : MonoBehaviour
 
     public int enemiesKilled = 0;
     public Text killStreakText;
-   public List<GameObject> noOfActiveEnemies = new List<GameObject>();
+    public List<GameObject> noOfActiveEnemies = new List<GameObject>();
     public int minEnemiesBeforeNewWave = 2;
     bool timeForNewWave=false;
 
     public Slider playerHealth;
     PlayerMovement playerMovement;
-    // Start is called before the first frame update
+
     void Start()
     {
         enemiesKilled = 0;
@@ -28,19 +28,16 @@ public class GameManager : MonoBehaviour
         playerHealth.maxValue = playerMovement.maxlives;
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (timeToSpawn)
         {
             StartCoroutine(SpawnEnemies());
             timeToSpawn = false;
-
         }
 
         killStreakText.text = enemiesKilled + " exterminated";
         playerHealth.value = playerMovement.lives;
-
 
         if (timeToSpawn == false)
         {
@@ -54,18 +51,16 @@ public class GameManager : MonoBehaviour
                 }
             }
         }
-    
     }
     IEnumerator SpawnEnemies()
     {
-        activeSpawnPoint = Random.Range(0, spawnPoint.Length);
         for (int i = 0; i < spawnedEnemiesAtEachSpawnPoint; i++)
         {
+            activeSpawnPoint = Random.Range(0, spawnPoint.Length);
             yield return new WaitForSeconds(waitTimeBetweenEnemies);
             int ranndomizeEnemyTypes = Random.Range(0, anEnemy.Length);
-           GameObject latestAddition= Instantiate(anEnemy[ranndomizeEnemyTypes], spawnPoint[activeSpawnPoint].transform.position, spawnPoint[activeSpawnPoint].transform.rotation);
+            GameObject latestAddition= Instantiate(anEnemy[ranndomizeEnemyTypes], spawnPoint[activeSpawnPoint].transform.position, spawnPoint[activeSpawnPoint].transform.rotation);
             noOfActiveEnemies.Add(latestAddition);
-           
         }
         timeForNewWave = true;
     }

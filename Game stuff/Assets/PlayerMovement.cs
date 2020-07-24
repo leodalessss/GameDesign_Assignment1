@@ -19,7 +19,6 @@ public class PlayerMovement : MonoBehaviour
     public float fireRate = 10f;
     #endregion
 
-
     public int maxlives = 25;
     public int lives = 25;
     GameManager gameManager;
@@ -75,7 +74,6 @@ public class PlayerMovement : MonoBehaviour
         {
             gameManager.GameOver();
         }
-
     }
     void FixedUpdate()
     {
@@ -83,12 +81,9 @@ public class PlayerMovement : MonoBehaviour
         float z = Input.GetAxis("Vertical");
         Vector3 move = new Vector3(x, 0, z)*speed*Time.deltaTime;
         rb.velocity = move;
-        FaceTheMouse();
-
-        
+        FaceTheMouse();        
     }
-
-
+    
    void FaceTheMouse()
     {
         /* Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
