@@ -6,7 +6,7 @@ using UnityEngine.AI;
 public class EnemyMovement : MonoBehaviour
 {
     Transform player;
-    NavMeshAgent navMeshAgent;
+   public NavMeshAgent navMeshAgent;
     public float radius=3;
     public float range = 4;
     float timeBetweenShots = 1.5f;
@@ -19,8 +19,9 @@ public class EnemyMovement : MonoBehaviour
     int rand;
     public float lives=5;
     GameManager gameManager;
+    bool changeSPeed=false;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
         navMeshAgent = GetComponent<NavMeshAgent>();
@@ -32,6 +33,7 @@ public class EnemyMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+       
         SetDestination();
         #region shooting
         if (Vector3.Distance(transform.position, player.position) <= range)
@@ -47,7 +49,17 @@ public class EnemyMovement : MonoBehaviour
             gameManager.enemiesKilled++;
             Destroy(gameObject);
         }
+        if (navMeshAgent.speed > 4.5)
+        {
+            timeBetweenShots = 1f;
+        }
         shootingTimer += Time.deltaTime;
+      /*  if (gameManager.timeForNewWave == true)
+        {
+            
+            navMeshAgent.speed = navMeshAgent.speed + (0.5f * gameManager.waveNumber);
+        }
+        */
     }
     void SetDestination()
     {
@@ -55,6 +67,7 @@ public class EnemyMovement : MonoBehaviour
         {
             navMeshAgent.SetDestination(player.position);
             navMeshAgent.stoppingDistance = radius;
+          
         }
     }
     void StartShooting()
@@ -68,11 +81,23 @@ public class EnemyMovement : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter(Collision collision)
+  /*  private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag == "Projectile")
         {
             lives--;
         }
+    }
+    */
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Projectile")
+        {
+            lives--;
+        }
+    }
+    public void AdjustSpeed()
+    {
+        navMeshAgent.speed = navMeshAgent.speed + (0.5f * gameManager.waveNumber);
     }
 }

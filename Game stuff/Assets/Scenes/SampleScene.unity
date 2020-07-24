@@ -14343,6 +14343,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1504433132}
   - component: {fileID: 1504433131}
+  - component: {fileID: 1504433130}
   m_Layer: 0
   m_Name: Minimap Cam
   m_TagString: Untagged
@@ -14350,6 +14351,18 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &1504433130
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1504433129}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fe350865d353b44eb9e9900c537f56a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!20 &1504433131
 Camera:
   m_ObjectHideFlags: 0
