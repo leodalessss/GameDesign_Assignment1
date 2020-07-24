@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.AI;
+using UnityEngine.SceneManagement;
+
 
 public class GameManager : MonoBehaviour
 {
@@ -17,15 +19,21 @@ public class GameManager : MonoBehaviour
     public Text killStreakText;
     public List<GameObject> noOfActiveEnemies = new List<GameObject>();
     public int minEnemiesBeforeNewWave = 2;
-   bool timeForNewWave=false;
-   public int waveNumber = 0;
+    bool timeForNewWave=false;
+    public int waveNumber = 0;
 
     public Slider playerHealth;
     PlayerMovement playerMovement;
 
     public float enemySPeedIncrements = 0.5f;
+
+    public AudioListener playerAudioListener;
+    public GameObject endPanel;
+    public Text score;
     void Start()
     {
+        playerAudioListener.enabled = true;
+        endPanel.SetActive(false);
         enemiesKilled = 0;
         playerMovement = FindObjectOfType<PlayerMovement>();
         playerHealth.maxValue = playerMovement.maxlives;
@@ -77,9 +85,29 @@ public class GameManager : MonoBehaviour
         timeForNewWave = true;
        
     }
+
+    public void MainMenu()
+    {
+        SceneManager.LoadScene(0);
+    }
+
+    public void QuitGame()
+    {
+        Debug.Log("QuitGame");
+        Application.Quit();
+    }
+
+    public void Restart()
+    {
+        SceneManager.LoadScene(1);
+    }
+
     public void GameOver()
     {
         //Restart Screen with your points 
+        playerAudioListener.enabled = false;
+        endPanel.SetActive(true);
         Debug.Log("GameOver");
+        score.text = "Score: " + enemiesKilled.ToString();
     }
 }

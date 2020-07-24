@@ -8,10 +8,6 @@ public class MenuManager : MonoBehaviour
 {
     public GameObject Panel_MoreInfo;
     public GameObject Panel_Credits;
-    void Start()
-    {
-        DontDestroyOnLoad(this);
-    }
 
     void Update()
     {
