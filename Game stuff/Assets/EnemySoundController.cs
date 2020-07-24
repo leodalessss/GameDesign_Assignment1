@@ -28,7 +28,6 @@ public class EnemySoundController : MonoBehaviour
                 randTime = Random.Range(3f, 5f);
                 randTimeCounter = 0;
                 myAudioSource.Play();
-                Debug.Log("TIME: " + randTime/2f);
             }
         }
         else

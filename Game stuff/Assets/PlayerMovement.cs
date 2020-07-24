@@ -113,9 +113,9 @@ public class PlayerMovement : MonoBehaviour
         currentBullets--;
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if (collision.gameObject.tag == "Projectile")
+        if (other.gameObject.tag == "Projectile")
         {
             lives--;
         }

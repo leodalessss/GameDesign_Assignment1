@@ -18,6 +18,6 @@ public class MinimapFollow : MonoBehaviour
         transform.position = newPos;
 
         //MinimapRotation Part
-        transform.rotation = Quaternion.Euler(90f, player.eulerAngles.y, 0f);
+        //transform.rotation = Quaternion.Euler(90f, player.eulerAngles.y, 0f);
     }
 }

@@ -76,7 +76,6 @@ public class EnemyMovement : MonoBehaviour
         {
             Instantiate(projectile, projectileSpawnPt.transform.position,projectileSpawnPt.rotation);
             myAudioSource.Play();
-            Debug.Log("        WWWWWWWWWWWWWWWW                  AAAAAAAAAAAA0");
             shootingTimer = 0;
         }
     }
