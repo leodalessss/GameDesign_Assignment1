@@ -56,8 +56,6 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 84
       Script: {instanceID: 0}
-    - Class: 89
-      Script: {instanceID: 0}
     - Class: 96
       Script: {instanceID: 0}
     - Class: 104
@@ -110,6 +108,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 199
       Script: {instanceID: 0}
+    - Class: 208
+      Script: {instanceID: 0}
     - Class: 213
       Script: {instanceID: 0}
     - Class: 222
@@ -119,8 +119,6 @@ ScriptsOnlyBuild:
     - Class: 224
       Script: {instanceID: 0}
     - Class: 238
-      Script: {instanceID: 0}
-    - Class: 258
       Script: {instanceID: 0}
   scriptHashData:
   - hash:
@@ -589,4 +587,4 @@ ScriptsOnlyBuild:
   scenePathNames:
   - Assets/Scenes/SampleScene.unity
   playerPath: D:/Documents/University/2020/SEMESTER 2/WSOA3004 - Game Design 3B/Assignment
-    1/Build/Build1/Group5 TopDownShooter.exe
+    1/Build/Build2/Group5 TopDownShooter.exe
